@@ -72,11 +72,7 @@ public final class ApiCall {
 
     public static Map<String, Object> send(String type, String json, String token, String testSetId, String version, String mode, boolean synchronous) {
         setBaseURL(synchronous);
-        System.out.println("Send Start:" + type);
-        System.out.println("Send Token:" + token);
-        System.out.println("Send testSetID:" + testSetId);
-        System.out.println("Send version:" + version);
-        System.out.println("Mode:" + mode);
+    
         String apiUrl = "";
         if (version == null) {
             version = "1";
@@ -581,14 +577,14 @@ public final class ApiCall {
     public static Map<String, Object> post(String apiUrl, String token, String json) {
         Map<String, Object> res;
         res = new HashMap<>();
-        System.out.println("Start API post Request");
+     
         try {
 
             int responseCode;
             String result;
             try (CloseableHttpClient client = getClient()) {
                 HttpPost httpPost = new HttpPost(apiUrl);
-                System.out.println(json);
+             
                 StringEntity entity = new StringEntity(json, ContentType.create("application/json", Consts.UTF_8));
                 httpPost.setEntity(entity);
                 httpPost.setHeader("Accept", "application/json");
@@ -597,7 +593,7 @@ public final class ApiCall {
                 CloseableHttpResponse response = client.execute(httpPost);
                 responseCode = response.getStatusLine().getStatusCode();
                 result = EntityUtils.toString(response.getEntity());
-                System.out.println(responseCode);
+      
                 System.out.println(result);
                 System.out.println(httpPost.getRequestLine().toString());
             }
@@ -643,14 +639,14 @@ public final class ApiCall {
     public static Map<String, Object> put(String apiUrl, String token, String json) {
         Map<String, Object> res;
         res = new HashMap<>();
-        System.out.println("Start API put Request");
+   
         try {
 
             int responseCode;
             String result;
             try (CloseableHttpClient client = getClient()) {
                 HttpPut request = new HttpPut(apiUrl);
-                System.out.println("URL" + apiUrl);
+             
                 StringEntity entity = new StringEntity(json, ContentType.create("application/json", Consts.UTF_8));
                 request.setEntity(entity);
                 request.setHeader("Accept", "application/json");
@@ -659,9 +655,7 @@ public final class ApiCall {
                 CloseableHttpResponse response = client.execute(request);
                 responseCode = response.getStatusLine().getStatusCode();
                 result = EntityUtils.toString(response.getEntity());
-                System.out.println(responseCode);
-                System.out.println(result);
-                System.out.println(request.getRequestLine().toString());
+             
             }
 
             res.put("RESPONSE_CODE", result);
@@ -680,7 +674,7 @@ public final class ApiCall {
 
                 // print result
                 res.put("ERROR", result);
-                System.out.println("POST NOT WORKED");
+             
 
             }
 
@@ -704,7 +698,7 @@ public final class ApiCall {
     public static Map<String, Object> get(String apiUrl, String token) {
         Map<String, Object> res;
         res = new HashMap<>();
-        System.out.println("Start API post Request");
+       
         try {
 
             int responseCode;
@@ -742,7 +736,7 @@ public final class ApiCall {
 
                 // print result
                 res.put("ERROR", result);
-                System.out.println("POST NOT WORKED");
+             
 
             }
 
@@ -783,9 +777,7 @@ public final class ApiCall {
                 } else {
                     result = "no results";
                 }
-                System.out.println(responseCode);
-                System.out.println(result);
-                System.out.println(request.getRequestLine().toString());
+      
             }
 
             res.put("RESPONSE_CODE", result);
@@ -804,7 +796,7 @@ public final class ApiCall {
 
                 // print result
                 res.put("ERROR", result);
-                System.out.println("POST NOT WORKED");
+              
 
             }
 
